@@ -11,8 +11,9 @@ while len(meal_plan) < 2:
     key, value = random.choice(list(meals_vs_ingredients.items()))
     meal_plan.add(key)
 for meal in meal_plan:
-    print(f"{meal} : Meal")
+    print(f"\nMeal: {meal}")
     required_ingredients = meals_vs_ingredients[meal]
     for ingredient in required_ingredients:
-        print(ingredient)
-    print()
+        print(f'- {ingredient}')
+    shopping_list.extend(required_ingredients)
+print(f'\nFinal shopping list ({len(shopping_list)} items):\n{shopping_list}')
