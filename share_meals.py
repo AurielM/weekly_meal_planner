@@ -12,13 +12,11 @@ class MealShare:
         and produces a link (printed in the terminal)through which the shopping list for this meal plan can be shared
         """
 
-        self.driver = webdriver.Chrome(
-            "./chromedriver"
-        )  # create an instance of chrome with driver that's in same directory as this project
-        self.driver.implicitly_wait(5)  # wait up to 5 seconds for each move
+        self.driver = webdriver.Chrome("./chromedriver")
+        self.driver.implicitly_wait(5)
 
     def load_pastebin(self):
-        self.driver.get("https://pastebin.com")  # using the .get method to load the website
+        self.driver.get("https://pastebin.com")
         self.driver.maximize_window()
         sleep(2)
 

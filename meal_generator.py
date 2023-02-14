@@ -4,6 +4,10 @@ import random
 
 class MealGenerator:
     def __init__(self):
+        """
+        Creates meal plan (2 meals output) and provides the resulting shopping list
+        """
+
         self.single_meal = 0
         self.shopping_list = []
         self.meal_plan = set()
@@ -11,7 +15,6 @@ class MealGenerator:
 
     def meal_and_ingredients(self, meal_plan):
         for meal in meal_plan:
-            # print(f"\nMeal: {meal}")
             self.required_ingredients = meals_vs_ingredients[meal]
             self.shopping_list.extend(self.required_ingredients)
         return self.shopping_list
