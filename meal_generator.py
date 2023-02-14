@@ -39,8 +39,3 @@ class MealGenerator():
 
     def generate_meal(self):
         return self.final_shopping_list(self.meal_and_ingredients(self.create_meal_plan()))
-
-
-
-# g = MealGenerator()
-# print(g.generate_meal())
