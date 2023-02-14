@@ -14,6 +14,11 @@ class MealShare():
     
 
     def __init__(self):
+        """
+        This class takes the meal plan produced by the MealGenerator
+        and produces a link (printed in the terminal)through which the shopping list for this meal plan can be shared
+        """
+        
         self.driver = webdriver.Chrome('./chromedriver')  # create an instance of chrome with driver that's in same directory as this project
         self.driver.implicitly_wait(5) # wait up to 5 seconds for each move
 
@@ -29,7 +34,7 @@ class MealShare():
         terms_conditions.click()
         pastebinbox = self.driver.find_element(By.NAME, 'PostForm[text]')
         pastebinbox.send_keys(f'Shopping list for this week:\n{MealGenerator().generate_meal()}')
-        print('Meal plan added to pastebin.')
+
         
     def navigate_dropdowns(self):
         open_categories = self.driver.find_element(By.CLASS_NAME, "select2-selection__arrow")
@@ -40,17 +45,22 @@ class MealShare():
         
         self.driver.execute_script("window.scrollTo(0, 100)") 
         
-        open_paste_expiration = self.driver.find_element(By.CLASS_NAME, "select2-selection__arrow") # class names are the same, how to find element by finding ajacent element?
+        open_paste_expiration = self.driver.find_elements(By.CLASS_NAME, "select2-selection__arrow")[2]
         open_paste_expiration.click()
         choose_paste_expiration = self.driver.find_element(By.XPATH, "//li[text()='1 Hour']")
         choose_paste_expiration.click()
 
+
     def naming_new_paste(self):
         create_paste_title = self.driver.find_element(By.NAME, 'PostForm[name]')
         create_paste_title.send_keys('Meal plan shopping list')
-        sleep(3)
         create_new_paste = self.driver.find_element(By.XPATH, "//button[text()='Create New Paste']")
-        # create_new_paste.click()
+        create_new_paste.click()
+
+
+    def produce_URL_to_share(self):
+        current_url = self.driver.current_url
+        print(f'\nLink of meal_plan here: {current_url}!')
         sleep(5)
 
 
@@ -59,5 +69,4 @@ share_a_meal.load_pastebin()
 share_a_meal.input_mealplan()
 share_a_meal.navigate_dropdowns()
 share_a_meal.naming_new_paste()
-
-#This string works<bound method MealGenerator.generate_meal of <meal_generator.MealGenerator object at 0x7fed66271f70>>
+share_a_meal.produce_URL_to_share()
