@@ -48,7 +48,7 @@ class MealShare:
 
     def produce_URL_to_share(self):
         current_url = self.driver.current_url
-        print(f"\nLink of meal_plan here: {current_url}!")
+        print(f"\nLink of meal_plan here: {current_url}")
         sleep(5)
 
 
